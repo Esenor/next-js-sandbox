@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rvf ./src/.next",
+    "predev": "npm run clean",
     "dev": "node ./src/server.js",
-    "start": "NODE_ENV=production node ./src/server.js",
-    "build": "next build src"
+    "prebuild": "npm run clean",
+    "build": "next build src",
+    "prestart": "npm run build",
+    "start": "NODE_ENV=production node ./src/server.js"
   },
   "keywords": [],
   "author": "",
