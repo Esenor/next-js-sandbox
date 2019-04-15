@@ -2,7 +2,7 @@ const express = require('express')
 const next = require('next')
 const defaultRoutes = require('./routes/default')
 
-const dev = true
+const dev = process.env.NODE_ENV !== 'production'
 const app = next({
   dev: dev,
   dir: './src'
