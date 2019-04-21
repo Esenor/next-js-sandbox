@@ -1,18 +1,18 @@
 const express = require('express')
 const next = require('next')
-const defaultRoutes = require('./routes/default')
-
+const routes = require('./routes')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({
   dev: dev,
   dir: './src'
 })
-const handle = app.getRequestHandler()
+
+const handler = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
   const server = express()
 
-  defaultRoutes.register(server, app)
+  server.use(handler)
 
   server.listen(3000, (err) => {
     if (err) {

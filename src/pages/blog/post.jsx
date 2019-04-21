@@ -1,8 +1,7 @@
 import React from 'react'
 import { withRouter } from 'next/router'
-import Layout from '../components/Layout'
-import Placeholder from '../components/Placeholder'
-import { Segment, Header } from 'semantic-ui-react'
+import Layout from '../../components/Layout'
+import { Header } from 'semantic-ui-react'
 
 class Post extends React.Component {
   render() {
