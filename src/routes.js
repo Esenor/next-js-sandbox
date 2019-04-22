@@ -16,8 +16,3 @@ module.exports = routes()
     pattern: '/article/:slug',
     page: 'blog/post'
   })
-  .add({
-    name: 'form_page',
-    pattern: '/formulaire',
-    page: 'form'
-  })

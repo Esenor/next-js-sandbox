@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const apiMockServer = require('./apiMockServer')
 const routes = require('./routes')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({
@@ -7,21 +8,17 @@ const app = next({
   dir: './src'
 })
 
-const handler = routes.getRequestHandler(app)
-
-app.prepare().then(() => {
+const run = async () => {
+  await app.prepare()
+  const apiMockApp = await apiMockServer.run(3042)
   const server = express()
-
-  server.use(handler)
-
+  server.use(routes.getRequestHandler(app))
   server.listen(3000, (err) => {
     if (err) {
       throw err
     }
-
     console.log('server ready on http://localhost:3000')
   })
-}).catch((err) => {
-  console.log(err)
-  process.exit(1)
-})
+}
+
+run()
