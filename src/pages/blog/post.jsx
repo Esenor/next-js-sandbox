@@ -1,13 +1,14 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 import Layout from '../../components/Layout'
-import { Header } from 'semantic-ui-react'
+import { Header, Loader } from 'semantic-ui-react'
 import fetch from 'isomorphic-fetch'
 
 class Post extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
       label: '',
       content: {
         text: ''
@@ -18,6 +19,11 @@ class Post extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState(
+      Object.assign({}, this.state, {
+        loading: true
+      })
+    )
     this.getPostContent(nextProps)
   }
 
@@ -35,18 +41,29 @@ class Post extends React.Component {
     )
     let post = await response.json()
     this.setState({
+      loading: false,
       label: post.label,
       content: post.content
     })
   }
   render() {
+    const loader = () => {
+      return <Loader active inline="centered" />
+    }
+    const content = () => {
+      return (
+        <React.Fragment>
+          <Header as="h1">
+            Post page {this.state.label}
+            <Header.Subheader>Next js demo Post page</Header.Subheader>
+          </Header>
+          <div>{this.state.content.text}</div>
+        </React.Fragment>
+      )
+    }
     return (
       <Layout page={this.constructor.name}>
-        <Header as="h1">
-          Post page {this.state.label}
-          <Header.Subheader>Next js demo Post page</Header.Subheader>
-        </Header>
-        <div>{this.state.content.text}</div>
+        {this.state.loading ? loader() : content()}
       </Layout>
     )
   }
