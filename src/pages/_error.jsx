@@ -12,7 +12,7 @@ class Error extends React.Component {
           <Header.Subheader>Generic error page</Header.Subheader>
         </Header>
         <p>
-          Error { this.props.router.query.code}
+          Generic error { this.props.router.query.code}
         </p>
       </Layout>
     )
