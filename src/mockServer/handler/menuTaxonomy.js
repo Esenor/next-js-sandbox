@@ -21,7 +21,7 @@ module.exports = {
         {
           name: 'Engage open-source bandwidth',
           to: 'blog_post',
-          label: 'Engage open-source bandwidth',
+          label: 'open-source',
           template: '/blog/post',
           params: {
             slug: 'open-source-bandwidth'
@@ -31,7 +31,7 @@ module.exports = {
         {
           name: 'E-business networkeffects',
           to: 'blog_post',
-          label: 'E-business networkeffects',
+          label: 'networkeffects',
           template: '/blog/post',
           params: {
             slug: 'networkeffects'
@@ -41,7 +41,7 @@ module.exports = {
         {
           name: 'Bleeding-edge e-commerce',
           to: 'blog_post',
-          label: 'Bleeding-edge e-commerce',
+          label: 'e-commerce',
           template: '/blog/post',
           params: {
             slug: 'bleeding-edge-e-commerce'

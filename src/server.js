@@ -1,6 +1,6 @@
 const express = require('express')
 const next = require('next')
-const apiMockServer = require('./apiMockServer')
+const apiMockServer = require('./mockServer/apiMockServer')
 const routes = require('./routes')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({

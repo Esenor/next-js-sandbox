@@ -1,3 +1,4 @@
+import '../styles/default.scss'
 import React from 'react'
 import Head from './Head'
 import Nav from './Nav'
@@ -8,10 +9,8 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <Head />
-        <Container>
-          <Nav pageSelected={this.props.page} />
-          {this.props.children}
-        </Container>
+        <Nav pageSelected={this.props.page} />
+        <Container>{this.props.children}</Container>
       </React.Fragment>
     )
   }

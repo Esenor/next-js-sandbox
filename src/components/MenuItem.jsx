@@ -6,10 +6,7 @@ import { Menu } from 'semantic-ui-react'
 class MenuItem extends React.Component {
   render() {
     return (
-      <Menu.Item
-        name={this.props.name}
-        active={this.props.active}
-      >
+      <Menu.Item name={this.props.name} active={this.props.active}>
         <Link to={this.props.to} params={Object.assign({}, this.props.params)}>
           <a>{this.props.label}</a>
         </Link>

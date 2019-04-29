@@ -1,14 +1,15 @@
 import React from 'react'
 import MenuItem from './MenuItem'
 import { withRouter } from 'next/router'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import fetch from 'isomorphic-fetch'
 
 class Nav extends React.Component {
   constructor() {
     super()
     this.state = {
-      menu: []
+      menu: [],
+      logo: 'http://localhost:3042/images/logo.png'
     }
     this.getMenuTaxonomy = this.getMenuTaxonomy.bind(this)
     this.getMenuTaxonomy()
@@ -20,17 +21,19 @@ class Nav extends React.Component {
       method: 'GET'
     })
     let menu = await response.json()
-    this.setState({
-      menu: menu.sort((a, b) => {
-        if (a.weight < b.weight) {
-          return -1
-        } else if (a.weight > b.weight) {
-          return 1
-        } else {
-          return 0
-        }
+    this.setState(
+      Object.assign({}, this.state, {
+        menu: menu.sort((a, b) => {
+          if (a.weight < b.weight) {
+            return -1
+          } else if (a.weight > b.weight) {
+            return 1
+          } else {
+            return 0
+          }
+        })
       })
-    })
+    )
   }
 
   render() {
@@ -60,7 +63,19 @@ class Nav extends React.Component {
     }
     return (
       <React.Fragment>
-        <Menu>{buildMenu()}</Menu>
+        <header className="efc-header">
+          <Menu pointing secondary>
+            {this.state.logo !== '' ? (
+              <Image
+                src={this.state.logo}
+                width="50"
+                height="50"
+                circular
+              />
+            ) : null}
+            {buildMenu()}
+          </Menu>
+        </header>
       </React.Fragment>
     )
   }
