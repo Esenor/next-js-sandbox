@@ -23,7 +23,7 @@
     "next": "^9.0.0",
     "next-routes": "^1.4.2",
     "node-sass": "^4.13.0",
-    "react": "^16.8.6",
+    "react": "^19.0.0",
     "react-dom": "^16.8.6",
     "semantic-ui-react": "^0.88.0"
   }
